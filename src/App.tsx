@@ -61,6 +61,7 @@ function App() {
 				{todolists.map(todol=>{
 					return(
 						<Todolist
+							key = {todol.id}
 							title={todol.title}
 							tasks={filteredTasks}
 							removeTask={removeTask}
