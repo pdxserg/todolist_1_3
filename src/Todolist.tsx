@@ -7,9 +7,10 @@ type TodolistPropsType = {
 	filtered:(filter: FilterType)=>void
 	addTask:(title:string)=>void
 	changeStatus:(id:number, isDone:boolean)=>void
+	filter:FilterType
 }
 
-export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered}: TodolistPropsType) => {
+export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, filter}: TodolistPropsType) => {
 const [value, setValue]= useState("")
 const onchangeHandler=(e: ChangeEvent<HTMLInputElement> )=>{
 	setValue(e.currentTarget.value)
@@ -53,9 +54,9 @@ const onKeyUpHandler =(e:KeyboardEvent<HTMLInputElement>)=>{
 
 			</ul>
 			<div>
-				<button onClick={()=> filtered("All")}>All</button>
-				<button onClick={()=> filtered("Active")}>Active</button>
-				<button onClick={()=> filtered("Completed")}>Completed</button>
+				<button className={filter === "All"?"activeButton":""} onClick={()=> filtered("All")}>All</button>
+				<button className={filter === "Active"?"activeButton":""} onClick={()=> filtered("Active")}>Active</button>
+				<button className={filter === "Completed"?"activeButton":""} onClick={()=> filtered("Completed")}>Completed</button>
 			</div>
 		</div>
 

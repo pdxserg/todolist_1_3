@@ -48,6 +48,7 @@ let filteredTasks = tasks
 			          filtered={filtered}
 			          addTask={addTask}
 			          changeStatus={changeStatus}
+			          filter={filter}
 
 
 			/>
