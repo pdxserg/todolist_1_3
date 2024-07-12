@@ -40,6 +40,8 @@ function App() {
 			{ id: v1(), title: 'GraphQL', isDone: false },
 		],
 	})
+	console.log(todolists)
+	console.log(tasks)
 		const removeTask = (todolistID:string, id: string) => {
 			setTasks({...tasks, [todolistID]:tasks[todolistID].filter((t) => t.id !== id)})
 		}
@@ -56,6 +58,7 @@ function App() {
 		}
 		const removeTodolist =(todolistId:string)=>{
 		setTodolists( todolists.filter(t=>t.id !== todolistId))
+			delete tasks[todolistId]
 		}
 
 		return (
