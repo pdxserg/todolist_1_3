@@ -33,7 +33,7 @@ function App() {
 			{id: v1(), title: "CSS", isDone: false},
 			{id: v1(), title: "React", isDone: true}
 		])
-		const [filter, setFilter] = useState<FilterType>("All")
+		// const [filter, setFilter] = useState<FilterType>("All")
 		const removeTask = (id: string) => {
 			setTasks(tasks.filter((t) => t.id !== id))
 		}
@@ -42,23 +42,25 @@ function App() {
 			setTasks([newTask, ...tasks])
 		}
 		const filtered = (filter: FilterType) => {
-			setFilter(filter)
+			// setFilter(filter)
 		}
 		const changeStatus = (id: string, isDone: boolean) => {
 			setTasks(tasks.map(t => t.id === id ? {...t, isDone} : t))
 
 		}
-		let filteredTasks = tasks
-		if (filter === "Active") {
-			filteredTasks = tasks.filter((t) => t.isDone === false)
-		}
-		if (filter === "Completed") {
-			filteredTasks = tasks.filter((t) => t.isDone === true)
-		}
 
 		return (
 			<div className="App">
 				{todolists.map(todol=>{
+
+					let filteredTasks = tasks
+					if (todol.filter === "Active") {
+						filteredTasks = tasks.filter((t) => t.isDone === false)
+					}
+					if (todol.filter === "Completed") {
+						filteredTasks = tasks.filter((t) => t.isDone === true)
+					}
+
 					return(
 						<Todolist
 							key = {todol.id}
@@ -68,7 +70,7 @@ function App() {
 							filtered={filtered}
 							addTask={addTask}
 							changeStatus={changeStatus}
-							filter={filter}
+							filter={todol.filter}
 						/>
 					)
 				})}
