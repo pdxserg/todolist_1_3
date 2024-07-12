@@ -8,9 +8,10 @@ type TodolistPropsType = {
 	addTask: (title: string) => void
 	changeStatus: (id: string, isDone: boolean) => void
 	filter: FilterType
+	title: string
 }
 
-export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, filter}: TodolistPropsType) => {
+export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, filter, title}: TodolistPropsType) => {
 	const [value, setValue] = useState("")
 	const [error, setError] = useState<null | string>(null)
 	const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +36,7 @@ export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, fi
 	}
 	return (
 		<div className="todolistcontayner">
+			<h2>{title}</h2>
 			<div>
 				<input className={error ? 'error' : ''}
 				       type="text"
