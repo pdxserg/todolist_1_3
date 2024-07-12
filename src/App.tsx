@@ -30,7 +30,10 @@ function App() {
 const filtered =(filter: FilterType)=>{
 		setFilter(filter)
 }
+const changeStatus=(id:number, isDone:boolean)=>{
+		setTasks(tasks.map(t=> t.id === id?{...t, isDone} :t))
 
+}
 let filteredTasks = tasks
 	if (filter === "Active"){
 		filteredTasks=tasks.filter((t)=>t.isDone === false )
@@ -44,6 +47,8 @@ let filteredTasks = tasks
 			          removeTask={removeTask}
 			          filtered={filtered}
 			          addTask={addTask}
+			          changeStatus={changeStatus}
+
 
 			/>
 		</div>

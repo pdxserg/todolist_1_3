@@ -6,13 +6,15 @@ type TodolistPropsType = {
 	removeTask:(id:number)=>void
 	filtered:(filter: FilterType)=>void
 	addTask:(title:string)=>void
+	changeStatus:(id:number, isDone:boolean)=>void
 }
 
-export const Todolist = (props: TodolistPropsType) => {
+export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered}: TodolistPropsType) => {
 const [value, setValue]= useState("")
 const onchangeHandler=(e: ChangeEvent<HTMLInputElement> )=>{
 	setValue(e.currentTarget.value)
 }
+
 const onKeyUpHandler =(e:KeyboardEvent<HTMLInputElement>)=>{
 	if(e.key === "Enter"   ){
 		addTaskHandler()
@@ -21,7 +23,7 @@ const onKeyUpHandler =(e:KeyboardEvent<HTMLInputElement>)=>{
 	if(value.length === 0){
 		<p>wrong</p>
 	}
-		props.addTask(value.trim())
+		 addTask(value.trim())
 		setValue("")
 }
 	return (
@@ -31,17 +33,18 @@ const onKeyUpHandler =(e:KeyboardEvent<HTMLInputElement>)=>{
 				<button onClick={addTaskHandler}>+</button>
 			</div>
 			<ul>
-				{props.tasks.length === 0
+				{ tasks.length === 0
 					? <p>Nothing hire</p>
-					: props.tasks.map((t) => {
+					:  tasks.map((t) => {
+
 						// const removeTaskHandler = (e: MouseEventHandler<HTMLButtonElement>) => {
 						//
 						// }
 						return (
 							<li key={t.id}>
-								<input type="checkbox" checked={t.isDone} />
+								<input type="checkbox" checked={t.isDone} onChange={(e)=> changeStatus(t.id,e.currentTarget.checked)}/>
 								{t.title}
-								<button onClick={() => props.removeTask(t.id)}>X</button>
+								<button onClick={() =>  removeTask(t.id)}>X</button>
 							</li>
 						)
 					})
@@ -50,9 +53,9 @@ const onKeyUpHandler =(e:KeyboardEvent<HTMLInputElement>)=>{
 
 			</ul>
 			<div>
-				<button onClick={()=>props.filtered("All")}>All</button>
-				<button onClick={()=>props.filtered("Active")}>Active</button>
-				<button onClick={()=>props.filtered("Completed")}>Completed</button>
+				<button onClick={()=> filtered("All")}>All</button>
+				<button onClick={()=> filtered("Active")}>Active</button>
+				<button onClick={()=> filtered("Completed")}>Completed</button>
 			</div>
 		</div>
 
