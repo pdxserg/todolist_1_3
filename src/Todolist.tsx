@@ -4,14 +4,15 @@ import {FilterType, TaskType} from "./App";
 type TodolistPropsType = {
 	tasks: Array<TaskType>
 	removeTask: (id: string) => void
-	filtered: (filter: FilterType) => void
+	filtered: (todolistId: string, filter: FilterType) => void
 	addTask: (title: string) => void
 	changeStatus: (id: string, isDone: boolean) => void
 	filter: FilterType
 	title: string
+	todolistId:string
 }
 
-export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, filter, title}: TodolistPropsType) => {
+export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, filter, title, todolistId}: TodolistPropsType) => {
 	const [value, setValue] = useState("")
 	const [error, setError] = useState<null | string>(null)
 	const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -69,12 +70,16 @@ export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, fi
 
 			</ul>
 			<div>
-				<button className={filter === "All" ? "activeButton" : ""} onClick={() => filtered("All")}>All</button>
-				<button className={filter === "Active" ? "activeButton" : ""}
-				        onClick={() => filtered("Active")}>Active
+				<button className={filter === "All" ? "activeButton" : ""}
+				        onClick={() => filtered(todolistId,"All")}>All
 				</button>
+
+				<button className={filter === "Active" ? "activeButton" : ""}
+				        onClick={() => filtered(todolistId,"Active")}>Active
+				</button>
+
 				<button className={filter === "Completed" ? "activeButton" : ""}
-				        onClick={() => filtered("Completed")}>Completed
+				        onClick={() => filtered(todolistId,"Completed")}>Completed
 				</button>
 			</div>
 		</div>
