@@ -58,17 +58,38 @@ function App() {
 
 		return (
 			<div className="App">
-				<Todolist
-					title={todolists[0].title}
-					tasks={filteredTasks}
-					removeTask={removeTask}
-					filtered={filtered}
-					addTask={addTask}
-					changeStatus={changeStatus}
-					filter={filter}
+				{todolists.map(todol=>{
+					return(
+						<Todolist
+							title={todol.title}
+							tasks={filteredTasks}
+							removeTask={removeTask}
+							filtered={filtered}
+							addTask={addTask}
+							changeStatus={changeStatus}
+							filter={filter}
+						/>
+					)
+				})}
 
-
-				/>
+				{/*<Todolist*/}
+				{/*	title={todolists[0].title}*/}
+				{/*	tasks={filteredTasks}*/}
+				{/*	removeTask={removeTask}*/}
+				{/*	filtered={filtered}*/}
+				{/*	addTask={addTask}*/}
+				{/*	changeStatus={changeStatus}*/}
+				{/*	filter={filter}*/}
+				{/*/>*/}
+				{/*<Todolist*/}
+				{/*	title={todolists[1].title}*/}
+				{/*	tasks={filteredTasks}*/}
+				{/*	removeTask={removeTask}*/}
+				{/*	filtered={filtered}*/}
+				{/*	addTask={addTask}*/}
+				{/*	changeStatus={changeStatus}*/}
+				{/*	filter={filter}*/}
+				{/*/>*/}
 			</div>
 		);
 	}
