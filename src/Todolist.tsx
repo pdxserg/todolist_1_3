@@ -1,9 +1,10 @@
 import React, {MouseEventHandler} from 'react';
-import {TaskType} from "./App";
+import {FilterType, TaskType} from "./App";
 
 type TodolistPropsType = {
 	tasks: Array<TaskType>
 	removeTask:(id:number)=>void
+	filtered:(filter: FilterType)=>void
 }
 
 export const Todolist = (props: TodolistPropsType) => {
@@ -32,9 +33,9 @@ export const Todolist = (props: TodolistPropsType) => {
 
 			</ul>
 			<div>
-				<button>All</button>
-				<button>Active</button>
-				<button>Completed</button>
+				<button onClick={()=>props.filtered("All")}>All</button>
+				<button onClick={()=>props.filtered("Active")}>Active</button>
+				<button onClick={()=>props.filtered("Completed")}>Completed</button>
 			</div>
 		</div>
 
