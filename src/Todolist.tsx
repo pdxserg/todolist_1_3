@@ -1,4 +1,4 @@
-import React, {MouseEventHandler} from 'react';
+import React, {ChangeEvent, MouseEventHandler, useState} from 'react';
 import {FilterType, TaskType} from "./App";
 
 type TodolistPropsType = {
@@ -8,18 +8,24 @@ type TodolistPropsType = {
 }
 
 export const Todolist = (props: TodolistPropsType) => {
-
-
+const [value, setValue]= useState("")
+const onchangeHandler=(e: ChangeEvent<HTMLInputElement> )=>{
+	setValue(e.currentTarget.value)
+}
 
 	return (
-		<div>
+		<div className="todolistcontayner">
+			<div>
+				<input type="text" value={value} onChange={onchangeHandler}/>
+				<button>+</button>
+			</div>
 			<ul>
 				{props.tasks.length === 0
 					? <p>Nothing hire</p>
 					: props.tasks.map((t) => {
-						const removeTaskHandler = (e: MouseEventHandler<HTMLButtonElement>) => {
-
-						}
+						// const removeTaskHandler = (e: MouseEventHandler<HTMLButtonElement>) => {
+						//
+						// }
 						return (
 							<li key={t.id}>
 								<input type="checkbox" checked={t.isDone}/>
