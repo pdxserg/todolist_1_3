@@ -6,6 +6,7 @@
 
 
 .todolistcontayner {
+    position: relative;
     width: 200px;
     margin: 10px;
     padding: 10px;
@@ -29,4 +30,9 @@
 .error-message {
 
     color: red;
+}
+.remove-todolist{
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }

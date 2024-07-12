@@ -37,7 +37,9 @@ export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, fi
 	}
 	return (
 		<div className="todolistcontayner">
+			<button className="remove-todolist">x</button>
 			<h2>{title}</h2>
+
 			<div>
 				<input className={error ? 'error' : ''}
 				       type="text"
@@ -59,7 +61,7 @@ export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, fi
 						return (
 							<li className={t.isDone === true ? "opacity" : ""} key={t.id}>
 								<input type="checkbox" checked={t.isDone}
-								       onChange={(e) => changeStatus(todolistId,t.id, e.currentTarget.checked)}/>
+								       onChange={(e) => changeStatus(todolistId, t.id, e.currentTarget.checked)}/>
 								{t.title}
 								<button onClick={() => removeTask(todolistId, t.id)}>X</button>
 							</li>
@@ -71,15 +73,15 @@ export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, fi
 			</ul>
 			<div>
 				<button className={filter === "All" ? "activeButton" : ""}
-				        onClick={() => filtered(todolistId,"All")}>All
+				        onClick={() => filtered(todolistId, "All")}>All
 				</button>
 
 				<button className={filter === "Active" ? "activeButton" : ""}
-				        onClick={() => filtered(todolistId,"Active")}>Active
+				        onClick={() => filtered(todolistId, "Active")}>Active
 				</button>
 
 				<button className={filter === "Completed" ? "activeButton" : ""}
-				        onClick={() => filtered(todolistId,"Completed")}>Completed
+				        onClick={() => filtered(todolistId, "Completed")}>Completed
 				</button>
 			</div>
 		</div>
