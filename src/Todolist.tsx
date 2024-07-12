@@ -11,25 +11,33 @@ export const Todolist = (props: TodolistPropsType) => {
 
 
 	return (
-		<ul>
-			{props.tasks.length === 0
-				? <p>Nothing hire</p>
-				: props.tasks.map((t) => {
-					const removeTaskHandler=(e:MouseEventHandler<HTMLButtonElement>)=> {
+		<div>
+			<ul>
+				{props.tasks.length === 0
+					? <p>Nothing hire</p>
+					: props.tasks.map((t) => {
+						const removeTaskHandler = (e: MouseEventHandler<HTMLButtonElement>) => {
 
-					}
+						}
 						return (
 							<li key={t.id}>
 								<input type="checkbox" checked={t.isDone}/>
 								{t.title}
-								<button onClick={(e)=>props.removeTask(t.id)}>X</button>
+								<button onClick={() => props.removeTask(t.id)}>X</button>
 							</li>
 						)
 					})
-			}
+				}
 
 
-		</ul>
+			</ul>
+			<div>
+				<button>All</button>
+				<button>Active</button>
+				<button>Completed</button>
+			</div>
+		</div>
+
 	);
 };
 
