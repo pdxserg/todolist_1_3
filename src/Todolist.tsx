@@ -12,7 +12,7 @@ type TodolistPropsType = {
 
 export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, filter}: TodolistPropsType) => {
 	const [value, setValue] = useState("")
-	const [error, setError] =useState<null | string>(null)
+	const [error, setError] = useState<null | string>(null)
 	const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		setValue(e.currentTarget.value)
 	}
@@ -29,16 +29,21 @@ export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, fi
 			setValue("")
 
 		} else {
-			setError("error!")
+			setError("Title is required!")
 		}
 
 	}
 	return (
 		<div className="todolistcontayner">
 			<div>
-				<input type="text" value={value} onChange={onchangeHandler} onKeyUp={onKeyUpHandler}/>
-				<button onClick={addTaskHandler}>+</button>
-				{error}
+				<input className={error ? 'error' : ''}
+				       type="text"
+				       value={value}
+				       onChange={onchangeHandler}
+				       onKeyUp={onKeyUpHandler}/>
+				<button className={error ? 'error' : ''} onClick={addTaskHandler}>+</button>
+				{/*<p className={error ? "error-message" : ""}>{error}</p>*/}
+				{error && <div className={'error-message'}>{error}</div>}
 			</div>
 			<ul>
 				{tasks.length === 0

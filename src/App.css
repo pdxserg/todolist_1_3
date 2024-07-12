@@ -20,3 +20,13 @@
 .opacity{
     opacity: 40%;
 }
+.error {
+
+    border: red 1px solid;
+
+}
+
+.error-message {
+
+    color: red;
+}
