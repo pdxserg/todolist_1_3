@@ -63,7 +63,7 @@ function App() {
 
 		return (
 			<div className="App">
-				<AddItemForm/>
+				{/*<AddItemForm/>*/}
 				{todolists.map(todol=>{
 
 					let filteredTasks = tasks[todol.id]
