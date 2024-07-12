@@ -3,7 +3,7 @@ import {FilterType, TasksStateType, TaskType} from "./App";
 
 type TodolistPropsType = {
 	tasks:TasksStateType
-	removeTask: (id: string) => void
+	removeTask: (todolistID:string, id: string) => void
 	filtered: (todolistId: string, filter: FilterType) => void
 	addTask: (todolistId: string, title: string) => void
 	changeStatus: (todolistId:string, id: string, isDone: boolean) => void
@@ -61,7 +61,7 @@ export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, fi
 								<input type="checkbox" checked={t.isDone}
 								       onChange={(e) => changeStatus(todolistId,t.id, e.currentTarget.checked)}/>
 								{t.title}
-								<button onClick={() => removeTask(t.id)}>X</button>
+								<button onClick={() => removeTask(todolistId, t.id)}>X</button>
 							</li>
 						)
 					})
