@@ -42,7 +42,7 @@ const onKeyUpHandler =(e:KeyboardEvent<HTMLInputElement>)=>{
 						//
 						// }
 						return (
-							<li key={t.id}>
+							<li className={t.isDone===true?"opacity":""} key={t.id}>
 								<input type="checkbox" checked={t.isDone} onChange={(e)=> changeStatus(t.id,e.currentTarget.checked)}/>
 								{t.title}
 								<button onClick={() =>  removeTask(t.id)}>X</button>
