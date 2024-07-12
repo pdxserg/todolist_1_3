@@ -51,17 +51,8 @@ function App() {
 			setTodolists(todolists.map(t=>t.id === todolistId ?{...t, filter } :t))
 		}
 		const changeStatus = (todolistID:string , taskId: string, isDone: boolean) => {
-			// setTasks(tasks.map(t => t.id === id ? {...t, isDone} : t))
 			 setTasks({...tasks,
 				 [todolistID]: tasks[todolistID].map(task=>task.id ===taskId?{...task, isDone} :task)})
-
-
-			// setTasks((prevTasks) => {
-			// 	const updatedTasks = prevTasks[todolistID].map(task =>
-			// 		task.id === taskId ? { ...task, isDone } : task
-			// 	);
-			// 	return { ...prevTasks, [todolistID]: updatedTasks };
-			// });
 		}
 
 		return (
