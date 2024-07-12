@@ -10,9 +10,20 @@ type TodolistPropsType = {
 	filter: FilterType
 	title: string
 	todolistId:string
+	removeTodolist:(todolistId:string)=>void
 }
 
-export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, filter, title, todolistId}: TodolistPropsType) => {
+export const Todolist = ({
+	                         tasks,
+	                         addTask,
+	                         removeTask,
+	                         changeStatus,
+	                         filtered,
+	                         filter,
+	                         title,
+	                         todolistId,
+	                         removeTodolist
+                         }: TodolistPropsType) => {
 	const [value, setValue] = useState("")
 	const [error, setError] = useState<null | string>(null)
 	const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +48,8 @@ export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, fi
 	}
 	return (
 		<div className="todolistcontayner">
-			<button className="remove-todolist">x</button>
+			<button className="remove-todolist"
+			onClick={()=>removeTodolist(todolistId)}>x</button>
 			<h2>{title}</h2>
 
 			<div>
