@@ -40,8 +40,7 @@ function App() {
 			{ id: v1(), title: 'GraphQL', isDone: false },
 		],
 	})
-	console.log(todolists)
-	console.log(tasks)
+
 		const removeTask = (todolistID:string, id: string) => {
 			setTasks({...tasks, [todolistID]:tasks[todolistID].filter((t) => t.id !== id)})
 		}
@@ -65,13 +64,13 @@ function App() {
 			<div className="App">
 				{todolists.map(todol=>{
 
-					let filteredTasks = tasks
-					// if (todol.filter === "Active") {
-					// 	filteredTasks = tasks[todol.id].filter((t) => t.isDone === false)
-					// }
-					// if (todol.filter === "Completed") {
-					// 	filteredTasks = tasks[todol.id].filter((t) => t.isDone === true)
-					// }
+					let filteredTasks = tasks[todol.id]
+					if (todol.filter === "Active") {
+						filteredTasks = filteredTasks.filter((t) => t.isDone === false)
+					}
+					if (todol.filter === "Completed") {
+						filteredTasks = filteredTasks.filter((t) => t.isDone === true)
+					}
 
 					return(
 						<Todolist

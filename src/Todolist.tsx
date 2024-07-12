@@ -2,7 +2,7 @@ import React, {ChangeEvent, MouseEventHandler, KeyboardEvent, useState} from 're
 import {FilterType, TasksStateType, TaskType} from "./App";
 
 type TodolistPropsType = {
-	tasks:TasksStateType
+	tasks:TaskType[]
 	removeTask: (todolistID:string, id: string) => void
 	filtered: (todolistId: string, filter: FilterType) => void
 	addTask: (todolistId: string, title: string) => void
@@ -63,9 +63,9 @@ export const Todolist = ({
 				{error && <div className={'error-message'}>{error}</div>}
 			</div>
 			<ul>
-				{tasks[todolistId].length === 0
+				{tasks.length === 0
 					? <p>Nothing hire</p>
-					: tasks[todolistId].map((t) => {
+					: tasks.map((t) => {
 
 						// const removeTaskHandler = (e: MouseEventHandler<HTMLButtonElement>) => {
 						//
