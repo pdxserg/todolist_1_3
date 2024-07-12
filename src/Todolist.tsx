@@ -1,12 +1,12 @@
 import React, {ChangeEvent, MouseEventHandler, KeyboardEvent, useState} from 'react';
-import {FilterType, TaskType} from "./App";
+import {FilterType, TasksStateType, TaskType} from "./App";
 
 type TodolistPropsType = {
-	tasks: Array<TaskType>
+	tasks:TasksStateType
 	removeTask: (id: string) => void
 	filtered: (todolistId: string, filter: FilterType) => void
-	addTask: (title: string) => void
-	changeStatus: (id: string, isDone: boolean) => void
+	addTask: (todolistId: string, title: string) => void
+	changeStatus: (todolistId:string, id: string, isDone: boolean) => void
 	filter: FilterType
 	title: string
 	todolistId:string
@@ -27,7 +27,7 @@ export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, fi
 	}
 	const addTaskHandler = () => {
 		if (value.trim() !== "") {
-			addTask(value.trim())
+			addTask(todolistId, value.trim())
 			setValue("")
 
 		} else {
@@ -49,9 +49,9 @@ export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, fi
 				{error && <div className={'error-message'}>{error}</div>}
 			</div>
 			<ul>
-				{tasks.length === 0
+				{tasks[todolistId].length === 0
 					? <p>Nothing hire</p>
-					: tasks.map((t) => {
+					: tasks[todolistId].map((t) => {
 
 						// const removeTaskHandler = (e: MouseEventHandler<HTMLButtonElement>) => {
 						//
@@ -59,7 +59,7 @@ export const Todolist = ({tasks, addTask, removeTask, changeStatus, filtered, fi
 						return (
 							<li className={t.isDone === true ? "opacity" : ""} key={t.id}>
 								<input type="checkbox" checked={t.isDone}
-								       onChange={(e) => changeStatus(t.id, e.currentTarget.checked)}/>
+								       onChange={(e) => changeStatus(todolistId,t.id, e.currentTarget.checked)}/>
 								{t.title}
 								<button onClick={() => removeTask(t.id)}>X</button>
 							</li>
