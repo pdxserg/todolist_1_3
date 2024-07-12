@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {Todolist} from "./Todolist";
 import {v1} from "uuid";
+import {AddItemForm} from "./AddItemForm";
 
 
 export type TaskType = {
@@ -62,6 +63,7 @@ function App() {
 
 		return (
 			<div className="App">
+				<AddItemForm/>
 				{todolists.map(todol=>{
 
 					let filteredTasks = tasks[todol.id]
