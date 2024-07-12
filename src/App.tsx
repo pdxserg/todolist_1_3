@@ -17,13 +17,13 @@ function App() {
 			{id: 2, title: "CSS", isDone: false},
 			{id: 3, title: "React", isDone: true}
 		])
-const removeTask =()=>{
-
+const removeTask =(id:number)=>{
+		setTasks(tasks.filter((t)=> t.id !== id))
 }
 	return (
 		<div className="App">
 			<Todolist tasks={tasks}
-
+			          removeTask={removeTask}
 			/>
 		</div>
 	);
