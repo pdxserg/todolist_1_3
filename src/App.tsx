@@ -52,13 +52,16 @@ function App() {
 		}
 		const changeStatus = (todolistID:string , taskId: string, isDone: boolean) => {
 			// setTasks(tasks.map(t => t.id === id ? {...t, isDone} : t))
-			// setTasks({...tasks, tasks[todolistId].map})
-			setTasks((prevTasks) => {
-				const updatedTasks = prevTasks[todolistID].map(task =>
-					task.id === taskId ? { ...task, isDone } : task
-				);
-				return { ...prevTasks, [todolistID]: updatedTasks };
-			});
+			 setTasks({...tasks,
+				 [todolistID]: tasks[todolistID].map(task=>task.id ===taskId?{...task, isDone} :task)})
+
+
+			// setTasks((prevTasks) => {
+			// 	const updatedTasks = prevTasks[todolistID].map(task =>
+			// 		task.id === taskId ? { ...task, isDone } : task
+			// 	);
+			// 	return { ...prevTasks, [todolistID]: updatedTasks };
+			// });
 		}
 
 		return (
