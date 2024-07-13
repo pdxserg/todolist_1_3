@@ -1,5 +1,5 @@
-import React, {ChangeEvent, MouseEventHandler, KeyboardEvent, useState} from 'react';
-import {FilterType, TasksStateType, TaskType} from "./App";
+import React, {ChangeEvent } from 'react';
+import {FilterType, TaskType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 
@@ -51,14 +51,14 @@ export const Todolist = ({
 				{tasks.length === 0
 					? <p>Nothing hire</p>
 					: tasks.map((t) => {
+const changeStatusHandler =(e:ChangeEvent<HTMLInputElement>) => {
+	changeStatus(todolistId, t.id, e.currentTarget.checked)
+}
 
-						// const removeTaskHandler = (e: MouseEventHandler<HTMLButtonElement>) => {
-						//
-						// }
 						return (
 							<li className={t.isDone === true ? "opacity" : ""} key={t.id}>
 								<input type="checkbox" checked={t.isDone}
-								       onChange={(e) => changeStatus(todolistId, t.id, e.currentTarget.checked)}/>
+								       onChange={changeStatusHandler}/>
 								{t.title}
 								<button onClick={() => removeTask(todolistId, t.id)}>X</button>
 							</li>
