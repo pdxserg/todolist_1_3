@@ -13,7 +13,7 @@ type Actionnn = {
 	payload: {
 		id: string,}
 }
-type ActionsType=AddTodolistType|Actionnn|ChangeTodolistTitleType
+type ActionsType=AddTodolistType|Actionnn|ChangeTodolistTitleType|ChangeTodolistFilterType
 
 let todolistID1 = v1()
 let todolistID2 = v1()
@@ -27,19 +27,16 @@ export const todolistsReducer = (state: TodolistType[] = initialState, action: A
 	switch (action.type) {
 		case 'REMOVE-TODOLIST': {
 			return state.filter(t => t.id !== action.payload.id)
-
-			// setTodolists(todolists.filter(t => t.id !== todolistId))
 		}
 		case 'ADD-TODOLIST': {
 			const newTodolist:TodolistType ={id: "newId", title:action.payload.title, filter: 'All'}
 			return [newTodolist, ...state, ]
-
-			// const newTodolist:TodolistType ={id: newId, title, filter: 'All'}
-			// setTodolists([newTodolist, ...todolists])
 		}
 		case 'CHANGE-TITLE':{
 			return 	state.map(t=>t.id === action.id?{...t, title:action.title} :t )
-
+		}
+		case 'CHANGE-TOD0-FILTER':{
+			return state.map(t => t.id === action.id ? {...t, filter:action.filter} : t)
 		}
 		default:return state
 
@@ -61,4 +58,15 @@ export const changeTodolistTitle={
 	type: 'CHANGE-TITLE',
 	id: "1",
 	title: "Wierd"
+}as const
+
+type ChangeTodolistFilterType={
+	type: 'CHANGE-TOD0-FILTER',
+	id:string,
+	filter:string
+}
+export const changeTodolistFilter={
+	type: 'CHANGE-TOD0-FILTER',
+	id:'2',
+	filter:"Active"
 }as const
