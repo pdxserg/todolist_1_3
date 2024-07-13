@@ -1,4 +1,4 @@
-import React, {ChangeEvent } from 'react';
+import React, {ChangeEvent} from 'react';
 import {FilterType, TaskType} from "./App";
 import {AddItemForm} from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
@@ -13,7 +13,8 @@ type TodolistPropsType = {
 	title: string
 	todolistId: string
 	removeTodolist: (todolistId: string) => void
-	callback: (todolistId: string, newTitle: string) => void
+	changeTodolistTitle: (todolistId: string, newTitle: string) => void
+	changeTaskTitle: (todolistId: string,taskId:string, newTitle: string) => void
 }
 
 export const Todolist = ({
@@ -26,15 +27,16 @@ export const Todolist = ({
 	                         title,
 	                         todolistId,
 	                         removeTodolist,
-	                         callback
+	                         changeTodolistTitle,
+	                         changeTaskTitle
                          }: TodolistPropsType) => {
 
 
 	const addTitle = (title: string) => {
 		addTask(todolistId, title)
 	}
-	const calbackHandler=(newTitle: string)=>{
-		callback(todolistId,newTitle)
+	const calbackTodoHandler = (newTitle: string) => {
+		changeTodolistTitle(todolistId, newTitle)
 	}
 
 	return (
@@ -42,7 +44,7 @@ export const Todolist = ({
 			<button className="remove-todolist"
 			        onClick={() => removeTodolist(todolistId)}>x
 			</button>
-			<h2><EditableSpan title={title} callback={calbackHandler}/></h2>
+			<h2><EditableSpan title={title} callback={calbackTodoHandler}/></h2>
 
 			<div>
 				<AddItemForm addTitle={addTitle}/>
@@ -51,15 +53,18 @@ export const Todolist = ({
 				{tasks.length === 0
 					? <p>Nothing hire</p>
 					: tasks.map((t) => {
-const changeStatusHandler =(e:ChangeEvent<HTMLInputElement>) => {
-	changeStatus(todolistId, t.id, e.currentTarget.checked)
-}
+						const changeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
+							changeStatus(todolistId, t.id, e.currentTarget.checked)
+						}
+						const calbackTaskHandler=(newTitle: string)=>{
+							changeTaskTitle(todolistId,t.id,newTitle)
+						}
 
 						return (
 							<li className={t.isDone === true ? "opacity" : ""} key={t.id}>
 								<input type="checkbox" checked={t.isDone}
 								       onChange={changeStatusHandler}/>
-								{t.title}
+								<EditableSpan title={t.title} callback={calbackTaskHandler}/>
 								<button onClick={() => removeTask(todolistId, t.id)}>X</button>
 							</li>
 						)
