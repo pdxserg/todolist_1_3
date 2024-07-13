@@ -14,7 +14,7 @@ type TodolistPropsType = {
 	todolistId: string
 	removeTodolist: (todolistId: string) => void
 	changeTodolistTitle: (todolistId: string, newTitle: string) => void
-	changeTaskTitle: (todolistId: string,taskId:string, newTitle: string) => void
+	changeTaskTitle: (todolistId: string, taskId: string, newTitle: string) => void
 }
 
 export const Todolist = ({
@@ -56,13 +56,14 @@ export const Todolist = ({
 						const changeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
 							changeStatus(todolistId, t.id, e.currentTarget.checked)
 						}
-						const calbackTaskHandler=(newTitle: string)=>{
-							changeTaskTitle(todolistId,t.id,newTitle)
+						const calbackTaskHandler = (newTitle: string) => {
+							changeTaskTitle(todolistId, t.id, newTitle)
 						}
 
 						return (
 							<li className={t.isDone === true ? "opacity" : ""} key={t.id}>
-								<input type="checkbox" checked={t.isDone}
+								<input type="checkbox"
+								       checked={t.isDone}
 								       onChange={changeStatusHandler}/>
 								<EditableSpan title={t.title} callback={calbackTaskHandler}/>
 								<button onClick={() => removeTask(todolistId, t.id)}>X</button>
@@ -73,7 +74,7 @@ export const Todolist = ({
 
 
 			</ul>
-			<div>
+			<div className="foter-buttons">
 				<button className={filter === "All" ? "activeButton" : ""}
 				        onClick={() => filtered(todolistId, "All")}>All
 				</button>

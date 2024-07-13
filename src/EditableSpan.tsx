@@ -19,9 +19,9 @@ export const EditableSpan = ({title, callback}: EditableSpanTypeProps) => {
 		}
 	}
 	const onBlureHandle = () => {
-		if(newTitle !== ""){
+		if(newTitle.trim() !== ""){
 			setIsEditing(false)
-			callback(newTitle)
+			callback(newTitle.trim())
 		}else {
 			setError("Title requred!")
 		}
@@ -32,18 +32,20 @@ export const EditableSpan = ({title, callback}: EditableSpanTypeProps) => {
 		<div>
 			{isEditing ?
 				(
-					<input type="text"
+					<input className={error ? 'error' : ''}
+						type="text"
 					       value={newTitle}
 					       onChange={onChangeHandler}
 					       onBlur={onBlureHandle}
 					       onKeyDown={onKeyDownHandler}
 					       autoFocus
 					/>
+
 				) : (
 					<span onDoubleClick={() => setIsEditing(true)}>{title}</span>
 				)}
 
-
+			{error && <div className={'error-message'}>{error}</div>}
 		</div>
 	);
 };

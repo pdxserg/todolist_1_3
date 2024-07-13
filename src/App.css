@@ -7,7 +7,7 @@
 
 .todolistcontayner {
     position: relative;
-    width: 200px;
+    min-width: 250px;
     margin: 10px;
     padding: 10px;
     border: black solid;
@@ -20,6 +20,7 @@
 }
 .opacity{
     opacity: 40%;
+
 }
 .error {
 
@@ -36,3 +37,12 @@
     top: 5px;
     right: 5px;
 }
+.editableSpan{
+    background: #a64848;
+}
+.foter-buttons {
+    position: absolute;
+    bottom: 10px;
+
+}
+
