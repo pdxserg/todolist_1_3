@@ -3,10 +3,17 @@ import {TodolistType} from "../App";
 
 
 type AddTodolistType = {
-	type: string
-	payload: any
+	type: 'ADD-TODOLIST'
+	payload: {
+		title:string
+	}
 }
-type ActionsType=AddTodolistType
+type Actionnn = {
+	type: 'REMOVE-TODOLIST',
+	payload: {
+		id: string,}
+}
+type ActionsType=AddTodolistType|Actionnn
 
 let todolistID1 = v1()
 let todolistID2 = v1()
@@ -40,4 +47,4 @@ export const todolistsReducer = (state: TodolistType[] = initialState, action: A
 	payload: {
 		title: "New title",
 	},
-}
+} as const
