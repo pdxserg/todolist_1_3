@@ -13,7 +13,7 @@ type Actionnn = {
 	payload: {
 		id: string,}
 }
-type ActionsType=AddTodolistType|Actionnn
+type ActionsType=AddTodolistType|Actionnn|ChangeTodolistTitleType
 
 let todolistID1 = v1()
 let todolistID2 = v1()
@@ -37,6 +37,10 @@ export const todolistsReducer = (state: TodolistType[] = initialState, action: A
 			// const newTodolist:TodolistType ={id: newId, title, filter: 'All'}
 			// setTodolists([newTodolist, ...todolists])
 		}
+		case 'CHANGE-TITLE':{
+			return 	state.map(t=>t.id === action.id?{...t, title:action.title} :t )
+
+		}
 		default:return state
 
 	}
@@ -48,3 +52,13 @@ export const todolistsReducer = (state: TodolistType[] = initialState, action: A
 		title: "New title",
 	},
 } as const
+type ChangeTodolistTitleType={
+	type: 'CHANGE-TITLE',
+	id:string
+	title: string
+}
+export const changeTodolistTitle={
+	type: 'CHANGE-TITLE',
+	id: "1",
+	title: "Wierd"
+}as const
