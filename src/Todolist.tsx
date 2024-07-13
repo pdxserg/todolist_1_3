@@ -1,6 +1,7 @@
 import React, {ChangeEvent, MouseEventHandler, KeyboardEvent, useState} from 'react';
 import {FilterType, TasksStateType, TaskType} from "./App";
 import {AddItemForm} from "./AddItemForm";
+import {EditableSpan} from "./EditableSpan";
 
 type TodolistPropsType = {
 	tasks: TaskType[]
@@ -36,7 +37,7 @@ export const Todolist = ({
 			<button className="remove-todolist"
 			        onClick={() => removeTodolist(todolistId)}>x
 			</button>
-			<h2>{title}</h2>
+			<h2><EditableSpan title={title}/></h2>
 
 			<div>
 				<AddItemForm  addTitle={addTitle}/>

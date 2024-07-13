@@ -9,7 +9,7 @@ export const AddItemForm = ({ addTitle}:AddItemFormTypeProps) => {
 		setValue(e.currentTarget.value)
 	}
 
-	const onKeyUpHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+	const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
 		setError(null)
 		if (e.key === "Enter") {
 			addTitleHandler()
@@ -31,7 +31,7 @@ export const AddItemForm = ({ addTitle}:AddItemFormTypeProps) => {
 			       type="text"
 			       value={value}
 			       onChange={onchangeHandler}
-			       onKeyUp={onKeyUpHandler}/>
+			       onKeyDown={onKeyDownHandler}/>
 			<button className={error ? 'error' : ''} onClick={addTitleHandler}>+</button>
 			{/*<p className={error ? "error-message" : ""}>{error}</p>*/}
 			{error && <div className={'error-message'}>{error}</div>}
