@@ -13,6 +13,7 @@ type TodolistPropsType = {
 	title: string
 	todolistId: string
 	removeTodolist: (todolistId: string) => void
+	callback: (todolistId: string, newTitle: string) => void
 }
 
 export const Todolist = ({
@@ -24,23 +25,27 @@ export const Todolist = ({
 	                         filter,
 	                         title,
 	                         todolistId,
-	                         removeTodolist
+	                         removeTodolist,
+	                         callback
                          }: TodolistPropsType) => {
 
 
-
-	const addTitle=(title:string)=>{
-		addTask(todolistId,title)
+	const addTitle = (title: string) => {
+		addTask(todolistId, title)
 	}
+	const calbackHandler=(newTitle: string)=>{
+		callback(todolistId,newTitle)
+	}
+
 	return (
 		<div className="todolistcontayner">
 			<button className="remove-todolist"
 			        onClick={() => removeTodolist(todolistId)}>x
 			</button>
-			<h2><EditableSpan title={title}/></h2>
+			<h2><EditableSpan title={title} callback={calbackHandler}/></h2>
 
 			<div>
-				<AddItemForm  addTitle={addTitle}/>
+				<AddItemForm addTitle={addTitle}/>
 			</div>
 			<ul>
 				{tasks.length === 0
