@@ -1,6 +1,6 @@
 import { v1 } from 'uuid'
 import { TodolistType } from '../App'
-import {todolistsReducer} from "./todolist-reducer";
+import {addTodolist, todolistsReducer} from "./todolist-reducer";
 
 test('correct todolist should be removed', () => {
 	let todolistId1 = v1()
@@ -38,13 +38,13 @@ test('correct todolist should be added', () => {
 	]
 
 	// 2. Действие
-	const action = {
-		type: 'ADD-TODOLIST',
-		payload: {
-			title: "New title",
-		},
-	}
-	const endState = todolistsReducer(startState, action)
+	// const action = {
+	// 	type: 'ADD-TODOLIST',
+	// 	payload: {
+	// 		title: "New title",
+	// 	},
+	// }
+	const endState = todolistsReducer(startState, addTodolist)
 
 	// 3. Проверяем, что наши действия (изменения state) соответствуют ожиданию
 
