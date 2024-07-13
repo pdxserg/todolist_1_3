@@ -73,5 +73,5 @@ test('correct todolist should be update title', () => {
 	// 3. Проверяем, что наши действия (изменения state) соответствуют ожиданию
 
 	expect(endState.length).toBe(2)
-	 expect(endState[0].title).toBe("Wierd title")
+	 expect(endState[0].title).toBe("Wierd")
 })
