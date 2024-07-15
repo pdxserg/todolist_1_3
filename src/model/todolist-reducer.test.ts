@@ -1,6 +1,12 @@
 import { v1 } from 'uuid'
 import { TodolistType } from '../App'
-import {action, addTodolist, changeTodolistFilter, changeTodolistTitle, todolistsReducer} from "./todolist-reducer";
+import {
+	addTodolist,
+	changeTodolistFilter,
+	changeTodolistTitle,
+	removeTodolist,
+	todolistsReducer
+} from "./todolist-reducer";
 
 test('correct todolist should be removed', () => {
 	let todolistId1 = "todolistID1"
@@ -12,7 +18,7 @@ test('correct todolist should be removed', () => {
 		{ id: todolistId2, title: 'What to buy', filter: 'All' },
 	]
 
-	const endState = todolistsReducer(startState, action)
+	const endState = todolistsReducer(startState, removeTodolist)
 
 	// 3. Проверяем, что наши действия (изменения state) соответствуют ожиданию
 	// в массиве останется один тудулист
