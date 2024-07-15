@@ -13,6 +13,16 @@ type Actionnn = {
 	payload: {
 		id: string,}
 }
+type ChangeTodolistTitleType={
+	type: 'CHANGE-TITLE',
+	id:string
+	title: string
+}
+type ChangeTodolistFilterType={
+	type: 'CHANGE-TOD0-FILTER',
+	id:string,
+	filter:string
+}
 type ActionsType=AddTodolistType|Actionnn|ChangeTodolistTitleType|ChangeTodolistFilterType
 
 let todolistID1 = v1()
@@ -43,28 +53,26 @@ export const todolistsReducer = (state: TodolistType[] = initialState, action: A
 	}
 }
 
+ export const action = {
+	type: 'REMOVE-TODOLIST',
+	payload: {
+		id: "todolistID1",
+	},
+}as const
  export const addTodolist = {
 	type: 'ADD-TODOLIST',
 	payload: {
 		title: "New title",
 	},
 } as const
-type ChangeTodolistTitleType={
-	type: 'CHANGE-TITLE',
-	id:string
-	title: string
-}
+
 export const changeTodolistTitle={
 	type: 'CHANGE-TITLE',
 	id: "1",
 	title: "Wierd"
 }as const
 
-type ChangeTodolistFilterType={
-	type: 'CHANGE-TOD0-FILTER',
-	id:string,
-	filter:string
-}
+
 export const changeTodolistFilter={
 	type: 'CHANGE-TOD0-FILTER',
 	id:'2',
