@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useReducer, useState} from 'react';
 import './App.css';
 import {Todolist} from "./Todolist";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
+import {changeTodolistTitleAC, todolistsReducer} from "./model/todolist-reducer";
 
 
 export type TaskType = {
@@ -25,10 +26,14 @@ function App() {
 	let todolistID1 = v1()
 	let todolistID2 = v1()
 
-	let [todolists, setTodolists] = useState<TodolistType[]>([
-		{id: todolistID1, title: 'What to learn', filter: 'All'},
-		{id: todolistID2, title: 'What to buy', filter: 'All'},
-	])
+let [todolists, dispatchTodolist]=useReducer( todolistsReducer,[
+	{id: todolistID1, title: 'What to learn', filter: 'All'},
+	{id: todolistID2, title: 'What to buy', filter: 'All'},
+])
+	// let [todolists, setTodolists] = useState<TodolistType[]>([
+	// 	{id: todolistID1, title: 'What to learn', filter: 'All'},
+	// 	{id: todolistID2, title: 'What to buy', filter: 'All'},
+	// ])
 
 	let [tasks, setTasks] = useState<TasksStateType>({
 		[todolistID1]: [
@@ -50,7 +55,7 @@ function App() {
 		setTasks({...tasks, [todolistID]: [...tasks[todolistID], newTask]})
 	}
 	const filtered = (todolistId: string, filter: FilterType) => {
-		setTodolists(todolists.map(t => t.id === todolistId ? {...t, filter} : t))
+		// setTodolists(todolists.map(t => t.id === todolistId ? {...t, filter} : t))
 	}
 	const changeStatus = (todolistID: string, taskId: string, isDone: boolean) => {
 		setTasks({
@@ -59,17 +64,18 @@ function App() {
 		})
 	}
 	const removeTodolist = (todolistId: string) => {
-		setTodolists(todolists.filter(t => t.id !== todolistId))
+		// setTodolists(todolists.filter(t => t.id !== todolistId))
 		delete tasks[todolistId]
 	}
 	const addTodolist = (title:string) => {
 		const newId= v1()
 		const newTodolist:TodolistType ={id: newId, title, filter: 'All'}
-		setTodolists([newTodolist, ...todolists])
+		// setTodolists([newTodolist, ...todolists])
 		setTasks ({...tasks, [newId]:[]})
 	}
 	const changeTodolistTitle= (todolistID:string, newTitle:string)=>{
-		setTodolists(todolists.map(t=>t.id === todolistID?{...t, title:newTitle} :t ))
+		dispatchTodolist(changeTodolistTitleAC(todolistID,newTitle))
+		// setTodolists(todolists.map(t=>t.id === todolistID?{...t, title:newTitle} :t ))
 	}
 	const changeTaskTitle =(todolistId: string,taskId:string, newTitle: string)=>{
 		setTasks({...tasks,
