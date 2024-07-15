@@ -47,11 +47,11 @@ test('correct todolist should be update title', () => {
 
 	// 1. Стартовый state
 	const startState: TodolistType[] = [
-		{ id: "1", title: 'What to learn', filter: 'All' },
-		{ id: "2", title: 'What to buy', filter: 'All' },
+		{ id: todolistId1, title: 'What to learn', filter: 'All' },
+		{ id: todolistId2, title: 'What to buy', filter: 'All' },
 	]
 
-	const endState = todolistsReducer(startState, changeTodolistTitleAC)
+	const endState = todolistsReducer(startState, changeTodolistTitleAC(todolistId1, "Wierd"))
 
 	expect(endState.length).toBe(2)
 	 expect(endState[0].title).toBe("Wierd")

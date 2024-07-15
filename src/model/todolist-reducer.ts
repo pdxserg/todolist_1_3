@@ -63,12 +63,13 @@ export const todolistsReducer = (state: TodolistType[] = initialState, action: A
 	 } as const
  }
 
-export const changeTodolistTitleAC={
-	type: 'CHANGE-TITLE',
-	id: "1",
-	title: "Wierd"
-}as const
-
+export const changeTodolistTitleAC=(id: string, title: string)=> {
+	return {
+		type: 'CHANGE-TITLE',
+		id,
+		title
+	} as const
+}
 
 export const changeTodolistFilterAC={
 	type: 'CHANGE-TOD0-FILTER',
