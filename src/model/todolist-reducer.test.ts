@@ -62,11 +62,11 @@ test('correct todolist filter', () => {
 
 	// 1. Стартовый state
 	const startState: TodolistType[] = [
-		{ id: "1", title: 'What to learn', filter: 'All' },
-		{ id: "2", title: 'What to buy', filter: 'All' },
+		{ id: todolistId1, title: 'What to learn', filter: 'All' },
+		{ id: todolistId2, title: 'What to buy', filter: 'All' },
 	]
 
-	const endState = todolistsReducer(startState, changeTodolistFilterAC)
+	const endState = todolistsReducer(startState, changeTodolistFilterAC(todolistId2, "Active"))
 
 	expect(endState.length).toBe(2)
 	 expect(endState[1].filter).toBe("Active")
