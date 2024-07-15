@@ -56,10 +56,12 @@ export const todolistsReducer = (state: TodolistType[] = initialState, action: A
 		id
 	}as const
 }
- export const addTodolistAC = {
-	type: 'ADD-TODOLIST',
-		title: "New title",
-} as const
+ export const addTodolistAC =(title:string ):AddTodolistType=> {
+	 return {
+		 type: 'ADD-TODOLIST',
+		 title
+	 } as const
+ }
 
 export const changeTodolistTitleAC={
 	type: 'CHANGE-TITLE',
