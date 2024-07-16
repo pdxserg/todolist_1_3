@@ -4,6 +4,7 @@ import {Todolist} from "./Todolist";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
 import {
+	addTodolistAC,
 	changeTodolistFilterAC,
 	changeTodolistTitleAC,
 	removeTodolistAC,
@@ -73,10 +74,11 @@ let [todolists, dispatchTodolist]=useReducer( todolistsReducer,[
 		delete tasks[todolistId]
 	}
 	const addTodolist = (title:string) => {
-		const newId= v1()
-		const newTodolist:TodolistType ={id: newId, title, filter: 'All'}
+		// const newId= v1()
+		dispatchTodolist(addTodolistAC( title))
+		// const newTodolist:TodolistType ={id: newId, title, filter: 'All'}
 		// setTodolists([newTodolist, ...todolists])
-		setTasks ({...tasks, [newId]:[]})
+		// setTasks ({...tasks, [newId]:[]})
 	}
 	const changeTodolistTitle= (todolistID:string, newTitle:string)=>{
 		dispatchTodolist(changeTodolistTitleAC(todolistID,newTitle))

@@ -4,6 +4,7 @@ import {FilterType, TodolistType} from "../App";
 
 type AddTodolistType = {
 	type: 'ADD-TODOLIST'
+	newId:string
 	title: string
 }
 type RemoveTodolistType = {
@@ -57,10 +58,12 @@ export const removeTodolistAC = (id: string): RemoveTodolistType => {
 		id
 	} as const
 }
-export const addTodolistAC = (title: string): AddTodolistType => {
+export const addTodolistAC = ( title: string): AddTodolistType => {
 	return {
 		type: 'ADD-TODOLIST',
-		title
+		newId:v1(),
+		title,
+
 	} as const
 }
 
