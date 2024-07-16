@@ -3,7 +3,7 @@ import './App.css';
 import {Todolist} from "./Todolist";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
-import {changeTodolistTitleAC, todolistsReducer} from "./model/todolist-reducer";
+import {changeTodolistFilterAC, changeTodolistTitleAC, todolistsReducer} from "./model/todolist-reducer";
 
 
 export type TaskType = {
@@ -55,6 +55,7 @@ let [todolists, dispatchTodolist]=useReducer( todolistsReducer,[
 		setTasks({...tasks, [todolistID]: [...tasks[todolistID], newTask]})
 	}
 	const filtered = (todolistId: string, filter: FilterType) => {
+		dispatchTodolist(changeTodolistFilterAC(todolistId,filter))
 		// setTodolists(todolists.map(t => t.id === todolistId ? {...t, filter} : t))
 	}
 	const changeStatus = (todolistID: string, taskId: string, isDone: boolean) => {
@@ -64,6 +65,7 @@ let [todolists, dispatchTodolist]=useReducer( todolistsReducer,[
 		})
 	}
 	const removeTodolist = (todolistId: string) => {
+
 		// setTodolists(todolists.filter(t => t.id !== todolistId))
 		delete tasks[todolistId]
 	}
