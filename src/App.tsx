@@ -76,9 +76,6 @@ let [todolists, dispatchTodolist]=useReducer( todolistsReducer,[
 	const addTodolist = (title:string) => {
 		// const newId= v1()
 		dispatchTodolist(addTodolistAC( title))
-		// const newTodolist:TodolistType ={id: newId, title, filter: 'All'}
-		// setTodolists([newTodolist, ...todolists])
-		// setTasks ({...tasks, [newId]:[]})
 	}
 	const changeTodolistTitle= (todolistID:string, newTitle:string)=>{
 		dispatchTodolist(changeTodolistTitleAC(todolistID,newTitle))
