@@ -3,7 +3,12 @@ import './App.css';
 import {Todolist} from "./Todolist";
 import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
-import {changeTodolistFilterAC, changeTodolistTitleAC, todolistsReducer} from "./model/todolist-reducer";
+import {
+	changeTodolistFilterAC,
+	changeTodolistTitleAC,
+	removeTodolistAC,
+	todolistsReducer
+} from "./model/todolist-reducer";
 
 
 export type TaskType = {
@@ -56,7 +61,6 @@ let [todolists, dispatchTodolist]=useReducer( todolistsReducer,[
 	}
 	const filtered = (todolistId: string, filter: FilterType) => {
 		dispatchTodolist(changeTodolistFilterAC(todolistId,filter))
-		// setTodolists(todolists.map(t => t.id === todolistId ? {...t, filter} : t))
 	}
 	const changeStatus = (todolistID: string, taskId: string, isDone: boolean) => {
 		setTasks({
@@ -65,8 +69,7 @@ let [todolists, dispatchTodolist]=useReducer( todolistsReducer,[
 		})
 	}
 	const removeTodolist = (todolistId: string) => {
-
-		// setTodolists(todolists.filter(t => t.id !== todolistId))
+		dispatchTodolist(removeTodolistAC(todolistId))
 		delete tasks[todolistId]
 	}
 	const addTodolist = (title:string) => {
@@ -77,7 +80,6 @@ let [todolists, dispatchTodolist]=useReducer( todolistsReducer,[
 	}
 	const changeTodolistTitle= (todolistID:string, newTitle:string)=>{
 		dispatchTodolist(changeTodolistTitleAC(todolistID,newTitle))
-		// setTodolists(todolists.map(t=>t.id === todolistID?{...t, title:newTitle} :t ))
 	}
 	const changeTaskTitle =(todolistId: string,taskId:string, newTitle: string)=>{
 		setTasks({...tasks,
