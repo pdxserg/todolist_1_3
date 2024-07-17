@@ -3,7 +3,7 @@ import {FilterType, TasksStateType, TodolistType} from "../App";
 import {useState} from "react";
 
 
-type ActionsType = AddTodolistType | RemoveTodolistType | ChangeTodolistTitleType | ChangeTodolistFilterType
+// type ActionsType = AddTodolistType | RemoveTodolistType | ChangeTodolistTitleType | ChangeTodolistFilterType
 
 let todolistID1 = v1()
 let todolistID2 = v1()
@@ -23,7 +23,7 @@ let  initialState:TasksStateType ={
 export const tasksReducer = (state:TasksStateType = initialState, action: any):TasksStateType => {
 	switch (action.type) {
 		case 'REMOVE-TASK': {
-			return state
+			return {...state, [action.todoID]:state[action.todoID].filter(el=>el.id !== action.id)}
 		}
 		case 'ADD-TASK': {
 
