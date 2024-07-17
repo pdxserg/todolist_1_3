@@ -2,7 +2,7 @@ import {v1} from "uuid";
 import {FilterType, TodolistType} from "../App";
 
 
-type AddTodolistType = {
+export type AddTodolistType = {
 	type: 'ADD-TODOLIST'
 	newId:string
 	title: string
@@ -37,7 +37,7 @@ export const todolistsReducer = (state: TodolistType[] = initialState, action: A
 			return state.filter(t => t.id !== action.id)
 		}
 		case 'ADD-TODOLIST': {
-			const newTodolist: TodolistType = {id: v1(), title: action.title, filter: 'All'}
+			const newTodolist: TodolistType = {id: action.newId, title: action.title, filter: 'All'}
 			return [newTodolist, ...state,]
 		}
 		case 'CHANGE-TITLE': {
