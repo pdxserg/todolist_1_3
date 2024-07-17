@@ -7,7 +7,7 @@ export type AddTodolistType = {
 	newId:string
 	title: string
 }
-type RemoveTodolistType = {
+export type RemoveTodolistType = {
 	type: 'REMOVE-TODOLIST',
 	id: string
 }
