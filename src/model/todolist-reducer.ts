@@ -26,7 +26,7 @@ type ActionsType = AddTodolistType | RemoveTodolistType | ChangeTodolistTitleTyp
 let todolistID1 = v1()
 let todolistID2 = v1()
 
-const initialState = <TodolistType[]>([
+const initialState:TodolistType[] =([
 	{id: todolistID1, title: 'What to learn', filter: 'All'},
 	{id: todolistID2, title: 'What to buy', filter: 'All'},
 ])
