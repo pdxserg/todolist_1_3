@@ -8,14 +8,19 @@ import {
 	todolistsReducer
 } from "./todolist-reducer";
 
-let todolistID1 = v1()
-let todolistID2 = v1()
+let todolistID1 : string
+let todolistID2 : string
+let startState: TodolistType[]
+beforeEach(()=>{
+	 todolistID1 = v1()
+	 todolistID2 = v1()
 
-// 1. Стартовый state
-const startState: TodolistType[] = [
-	{ id: todolistID1, title: 'What to learn', filter: 'All' },
-	{ id: todolistID2, title: 'What to buy', filter: 'All' },
-]
+	 startState = [
+		{ id: todolistID1, title: 'What to learn', filter: 'All' },
+		{ id: todolistID2, title: 'What to buy', filter: 'All' },
+	]
+})
+
 test('correct todolist should be removed', () => {
 
 	const endState = todolistsReducer(startState, removeTodolistAC(todolistID1))
