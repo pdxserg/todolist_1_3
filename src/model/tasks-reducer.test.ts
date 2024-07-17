@@ -7,7 +7,7 @@ import {
 	removeTodolistAC,
 	todolistsReducer
 } from "./todolist-reducer";
-import {tasksReducer} from "./tasks-reducer";
+import {addTaskAC, removeTaskAC, tasksReducer} from "./tasks-reducer";
 
 let todolistID1 = v1()
 let todolistID2 = v1()
@@ -26,26 +26,24 @@ const  startState:TasksStateType ={
 }
 test('correct task should be removed', () => {
 
-	const action={
-		type: "REMOVE-TASK",
-			todoID:todolistID1,
-			id:"2"
-	}
 
-	const endState = tasksReducer(startState, action)
+
+	const endState = tasksReducer(startState, removeTaskAC(todolistID1, '2'))
 	expect(endState[todolistID1].length).toBe(2)
 	expect(endState[todolistID1][1].title).toBe("ReactJS")
 })
-// test('correct todolist should be added', () => {
-//
-// 	const endState = todolistsReducer(startState, addTodolistAC("New title"))
-//
-// 	expect(endState.length).toBe(3)
-// 	 expect(endState[0].title).toBe("New title")
-// })
+test('correct todolist should be added', () => {
+
+	const endState = tasksReducer(startState, addTaskAC(todolistID2, "www" ))
+
+
+
+	 expect(endState[todolistID2].length).toBe(3)
+	expect(endState[todolistID2][2].title).toBe("www")
+})
 // test('correct todolist should be update title', () => {
 //
-// 	const endState = todolistsReducer(startState, changeTodolistTitleAC(todolistID1, "Wierd"))
+// 	const endState = tasksReducer(startState, )
 //
 // 	expect(endState.length).toBe(2)
 // 	 expect(endState[0].title).toBe("Wierd")
