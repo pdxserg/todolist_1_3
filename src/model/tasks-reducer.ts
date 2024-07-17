@@ -4,7 +4,7 @@ import {useState} from "react";
 import {AddTodolistType} from "./todolist-reducer";
 
 
-  type ActionsType =RemoveTaskACType|AddTaskACType|AddTodolistType
+  type ActionsType =RemoveTaskACType|AddTaskACType|AddTodolistType|ChangeStatusACType
 
 let todolistID1 = v1()
 let todolistID2 = v1()
@@ -32,6 +32,10 @@ const newTask ={id: v1(), title: action.title, isDone: false}
 		}
 		case "ADD-TODOLIST":{
 			return {...state, [action.newId]:[]}
+		}
+		case "CHANGE-STATUS":{
+			return {...state, [action.todolistID]:state[action.todolistID].map(el=> el.id === action.id
+					?{...el, isDone:action.isDone} :el)}
 		}
 		// case 'CHANGE-STATUS': {
 		// 	return state
@@ -69,4 +73,18 @@ return{
 	todolistID,
 	title
 } as const
+}
+ type ChangeStatusACType ={
+	 type: 'CHANGE-STATUS',
+	 todolistID:string
+	 id:string
+	 isDone: boolean
+ }
+export const  changeStatusAC =(todolistID:string, id:string,isDone: boolean):ChangeStatusACType=>{
+	  return{
+		  type: 'CHANGE-STATUS',
+		  todolistID,
+		  id,
+		  isDone
+	  } as const
 }

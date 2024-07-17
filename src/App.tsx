@@ -10,7 +10,7 @@ import {
 	removeTodolistAC,
 	todolistsReducer
 } from "./model/todolist-reducer";
-import {addTaskAC, removeTaskAC, tasksReducer} from "./model/tasks-reducer";
+import {addTaskAC, changeStatusAC, removeTaskAC, tasksReducer} from "./model/tasks-reducer";
 
 
 export type TaskType = {
@@ -60,18 +60,13 @@ let [todolists, dispatchTodolist]=useReducer( todolistsReducer,[
 		dispatchTasks(removeTaskAC(todolistID,id))
 	}
 	const addTask = (todolistID: string, title: string) => {
-		const newTask = {id: v1(), title: title, isDone: false}
-		// setTasks({...tasks, [todolistID]: [...tasks[todolistID], newTask]})
-		dispatchTasks(addTaskAC(todolistID,title))
+			dispatchTasks(addTaskAC(todolistID,title))
 	}
 	const filtered = (todolistId: string, filter: FilterType) => {
 		dispatchTodolist(changeTodolistFilterAC(todolistId,filter))
 	}
 	const changeStatus = (todolistID: string, taskId: string, isDone: boolean) => {
-		// setTasks({
-		// 	...tasks,
-		// 	[todolistID]: tasks[todolistID].map(task => task.id === taskId ? {...task, isDone} : task)
-		// })
+		dispatchTasks(changeStatusAC(todolistID,taskId,isDone))
 	}
 	const removeTodolist = (todolistId: string) => {
 		dispatchTodolist(removeTodolistAC(todolistId))
