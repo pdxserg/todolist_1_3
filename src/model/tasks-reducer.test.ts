@@ -25,7 +25,7 @@ test('correct task should be removed', () => {
 	expect(endState[todolistID1].length).toBe(2)
 	expect(endState[todolistID1][1].title).toBe("ReactJS")
 })
-test('correct todolist should be added', () => {
+test('correct task should be added', () => {
 
 	const endState = tasksReducer(startState, addTaskAC(todolistID2, "www"))
 
@@ -57,18 +57,3 @@ test('property with todolistId should be deleted', () => {
 	expect(keys.length).toBe(1)
 	expect(endState['todolistId2']).not.toBeDefined()
 })
-
-// test('correct todolist should be update title', () => {
-//
-// 	const endState = tasksReducer(startState, )
-//
-// 	expect(endState.length).toBe(2)
-// 	 expect(endState[0].title).toBe("Wierd")
-// })
-// test('correct todolist filter', () => {
-//
-// 	const endState = todolistsReducer(startState, changeTodolistFilterAC(todolistID2, "Active"))
-//
-// 	expect(endState.length).toBe(2)
-// 	 expect(endState[1].filter).toBe("Active")
-// })
