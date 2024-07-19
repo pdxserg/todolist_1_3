@@ -11,17 +11,7 @@ import {addTaskAC, changeStatusAC, changeTaskTitleAC, removeTaskAC} from "./mode
 type TodolistPropsType = {
 	todolist: TodolistType
 
-	// tasks: TaskType[]
-	// removeTask: (todolistID: string, id: string) => void
-	// filtered: (todolistId: string, filter: FilterType) => void
-	// addTask: (todolistId: string, title: string) => void
-	// changeStatus: (todolistId: string, id: string, isDone: boolean) => void
-	// filter: FilterType
-	// title: string
-	// todolistId: string
-	// removeTodolist: (todolistId: string) => void
-	// changeTodolistTitle: (todolistId: string, newTitle: string) => void
-	// changeTaskTitle: (todolistId: string, taskId: string, newTitle: string) => void
+
 }
 
 export const TodolistWithredux = ({todolist}: TodolistPropsType) => {
