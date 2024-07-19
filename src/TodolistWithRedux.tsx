@@ -36,7 +36,7 @@ export const TodolistWithredux = ({todolist}: TodolistPropsType) => {
 			<button className="remove-todolist"
 			        onClick={() => dispatch(removeTodolistAC(id))}>x
 			</button>
-			<h2>iii<EditableSpan title={title} callback={calbackTodoHandler}/></h2>
+			<h2>Redux<EditableSpan title={title} callback={calbackTodoHandler}/></h2>
 
 			<div>
 				<AddItemForm addTitle={addTitle}/>
