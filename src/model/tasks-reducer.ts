@@ -16,7 +16,7 @@ let todolistID2 = v1()
 
 let initialState: TasksStateType = {}
 
-export const tasksReducer = (state: TasksStateType = initialState, action: ActionsType): TasksStateType => {
+export const tasksReducer = (state = initialState, action: ActionsType): TasksStateType => {
 	switch (action.type) {
 		case 'REMOVE-TASK': {
 			return {...state, [action.todolistID]: state[action.todolistID].filter(el => el.id !== action.id)}
@@ -44,6 +44,7 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
 			const copyState = {...state}
 			delete copyState[action.id]
 			return copyState
+
 		}
 		default:
 			return state
