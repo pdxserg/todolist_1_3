@@ -4,7 +4,7 @@ import {todolistsReducer} from "../model/todolist-reducer";
 
 
 const rootReducer= combineReducers({
-	task: tasksReducer,
+	tasks: tasksReducer,
 	todolists: todolistsReducer
 })
 export const store = createStore(rootReducer)

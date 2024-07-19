@@ -13,6 +13,7 @@ import {
 import {addTaskAC, changeStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./model/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./store/store";
+import {TodolistWithredux} from "./TodolistWithRedux";
 
 
 export type TaskType = {
@@ -54,7 +55,6 @@ function AppWithRedux() {
 	// 	}
 	// )
 const todolists =useSelector<AppRootStateType, TodolistType[]>(state=>state.todolists)
-	const tasks =useSelector<AppRootStateType, TasksStateType>(state => state.task)
 	const dispatch = useDispatch()
 	const removeTask = (todolistID: string, id: string) => {
 		dispatch(removeTaskAC(todolistID, id))
@@ -88,29 +88,29 @@ const todolists =useSelector<AppRootStateType, TodolistType[]>(state=>state.todo
 		<div className="App">
 			<AddItemForm addTitle={addTodolist}/>
 			{todolists.map(todol => {
-
-				let filteredTasks = tasks[todol.id]
-				if (todol.filter === "Active") {
-					filteredTasks = filteredTasks.filter((t) => t.isDone === false)
-				}
-				if (todol.filter === "Completed") {
-					filteredTasks = filteredTasks.filter((t) => t.isDone === true)
-				}
+				//
+				// let filteredTasks = tasks[todol.id]
+				// if (todol.filter === "Active") {
+				// 	filteredTasks = filteredTasks.filter((t) => t.isDone === false)
+				// }
+				// if (todol.filter === "Completed") {
+				// 	filteredTasks = filteredTasks.filter((t) => t.isDone === true)
+				// }
 
 				return (
-					<Todolist
+					<TodolistWithredux
 						key={todol.id}
-						todolistId={todol.id}
-						title={todol.title}
-						tasks={filteredTasks}
-						removeTask={removeTask}
-						filtered={filtered}
-						addTask={addTask}
-						changeStatus={changeStatus}
-						filter={todol.filter}
-						removeTodolist={removeTodolist}
-						changeTodolistTitle={changeTodolistTitle}
-						changeTaskTitle={changeTaskTitle}
+						todolist={todol}
+						// title={todol.title}
+						// tasks={filteredTasks}
+						// removeTask={removeTask}
+						// filtered={filtered}
+						// addTask={addTask}
+						// changeStatus={changeStatus}
+						// filter={todol.filter}
+						// removeTodolist={removeTodolist}
+						// changeTodolistTitle={changeTodolistTitle}
+						// changeTaskTitle={changeTaskTitle}
 					/>
 				)
 			})}

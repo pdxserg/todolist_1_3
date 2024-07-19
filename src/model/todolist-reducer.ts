@@ -23,8 +23,6 @@ type ChangeTodolistFilterType = {
 }
 type ActionsType = AddTodolistType | RemoveTodolistType | ChangeTodolistTitleType | ChangeTodolistFilterType
 
-let todolistID1 = v1()
-let todolistID2 = v1()
 
 const initialState:TodolistType[] =[]
 
