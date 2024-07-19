@@ -1,16 +1,8 @@
-import React, {useReducer} from 'react';
+import React from 'react';
 import './App.css';
-import {Todolist} from "./Todolist";
-import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
-import {
-	addTodolistAC,
-	changeTodolistFilterAC,
-	changeTodolistTitleAC,
-	removeTodolistAC,
-	todolistsReducer
-} from "./model/todolist-reducer";
-import {addTaskAC, changeStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./model/tasks-reducer";
+import {addTodolistAC, changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC} from "./model/todolist-reducer";
+import {addTaskAC, changeStatusAC, changeTaskTitleAC, removeTaskAC} from "./model/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./store/store";
 import {TodolistWithredux} from "./TodolistWithRedux";
@@ -33,28 +25,7 @@ export type FilterType = "All" | "Active" | "Completed"
 
 function AppWithRedux() {
 
-	// let todolistID1 = v1()
-	// let todolistID2 = v1()
-	//
-	// let [todolists, dispatchTodolist] = useReducer(todolistsReducer, [
-	// 	{id: todolistID1, title: 'What to learn', filter: 'All'},
-	// 	{id: todolistID2, title: 'What to buy', filter: 'All'},
-	// ])
-	//
-	// const [tasks, dispatchTasks] = useReducer(tasksReducer,
-	// 	{
-	// 		[todolistID1]: [
-	// 			{id: v1(), title: 'HTML&CSS', isDone: true},
-	// 			{id: v1(), title: 'JS', isDone: true},
-	// 			{id: v1(), title: 'ReactJS', isDone: false},
-	// 		],
-	// 		[todolistID2]: [
-	// 			{id: v1(), title: 'Rest API', isDone: true},
-	// 			{id: v1(), title: 'GraphQL', isDone: false},
-	// 		],
-	// 	}
-	// )
-const todolists =useSelector<AppRootStateType, TodolistType[]>(state=>state.todolists)
+	const todolists = useSelector<AppRootStateType, TodolistType[]>(state => state.todolists)
 	const dispatch = useDispatch()
 	const removeTask = (todolistID: string, id: string) => {
 		dispatch(removeTaskAC(todolistID, id))
@@ -88,29 +59,10 @@ const todolists =useSelector<AppRootStateType, TodolistType[]>(state=>state.todo
 		<div className="App">
 			<AddItemForm addTitle={addTodolist}/>
 			{todolists.map(todol => {
-				//
-				// let filteredTasks = tasks[todol.id]
-				// if (todol.filter === "Active") {
-				// 	filteredTasks = filteredTasks.filter((t) => t.isDone === false)
-				// }
-				// if (todol.filter === "Completed") {
-				// 	filteredTasks = filteredTasks.filter((t) => t.isDone === true)
-				// }
-
 				return (
 					<TodolistWithredux
 						key={todol.id}
 						todolist={todol}
-						// title={todol.title}
-						// tasks={filteredTasks}
-						// removeTask={removeTask}
-						// filtered={filtered}
-						// addTask={addTask}
-						// changeStatus={changeStatus}
-						// filter={todol.filter}
-						// removeTodolist={removeTodolist}
-						// changeTodolistTitle={changeTodolistTitle}
-						// changeTaskTitle={changeTaskTitle}
 					/>
 				)
 			})}
