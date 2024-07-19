@@ -44,8 +44,7 @@ function AppWithRedux() {
 	}
 	const addTodolist = (title: string) => {
 		// const newId= v1()
-		const action = addTodolistAC(title)
-		dispatch(action)
+		dispatch( addTodolistAC(title))
 
 
 	}
