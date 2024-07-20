@@ -24,6 +24,7 @@ export type TodolistType = {
 export type FilterType = "All" | "Active" | "Completed"
 
 function AppWithRedux() {
+	console.log("AppWithRedux")
 
 	const todolists = useSelector<AppRootStateType, TodolistType[]>(state => state.todolists)
 	const dispatch = useDispatch()

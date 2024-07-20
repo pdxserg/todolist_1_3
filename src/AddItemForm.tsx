@@ -2,7 +2,7 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 type AddItemFormTypeProps={
 	addTitle:(title: string)=>void
 }
-export const AddItemForm = ({ addTitle}:AddItemFormTypeProps) => {
+export const AddItemForm =React.memo (({ addTitle}:AddItemFormTypeProps) => {
 	console.log("additem-form")
 	const [value, setValue] = useState("")
 	const [error, setError] = useState<null | string>(null)
@@ -39,5 +39,5 @@ export const AddItemForm = ({ addTitle}:AddItemFormTypeProps) => {
 			{error && <div className={'error-message'}>{error}</div>}
 		</div>
 	);
-};
+})
 
