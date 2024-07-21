@@ -3,7 +3,7 @@ type AddItemFormTypeProps={
 	addTitle:(title: string)=>void
 }
 export const AddItemForm =React.memo (({ addTitle}:AddItemFormTypeProps) => {
-
+	console.log("aitem form")
 	const [value, setValue] = useState("")
 	const [error, setError] = useState<null | string>(null)
 	const onchangeHandler = (e: ChangeEvent<HTMLInputElement>) => {

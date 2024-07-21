@@ -4,7 +4,7 @@ type EditableSpanTypeProps = {
 	title: string
 	callback: (newTitle: string) => void
 }
-export const EditableSpan = ({title, callback}: EditableSpanTypeProps) => {
+export const EditableSpan = React.memo (({title, callback}: EditableSpanTypeProps) => {
 	const [isEditing, setIsEditing] = useState(false)
 	const [newTitle, setNewTitle] = useState(title)
 	const [error, setError] = useState<string|null >(null)
@@ -48,5 +48,5 @@ export const EditableSpan = ({title, callback}: EditableSpanTypeProps) => {
 			{error && <div className={'error-message'}>{error}</div>}
 		</div>
 	);
-};
+})
 

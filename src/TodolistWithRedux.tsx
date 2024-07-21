@@ -20,12 +20,14 @@ export const TodolistWithredux = React.memo (({todolist}: TodolistPropsType) => 
 
 	let tasks = useSelector<AppRootStateType, TaskType[]>(state => state.tasks[id])
 	const dispatch = useDispatch()
+
 	const addTitle =useCallback( (title: string) => {
 		dispatch(addTaskAC(todolist.id, title))
 	},[dispatch,todolist.id])
-	const calbackTodoHandler = (newTitle: string) => {
+
+	const calbackTodoHandler = useCallback ((newTitle: string) => {
 		dispatch(changeTodolistTitleAC(id, newTitle))
-	}
+	}, [dispatch,id])
 
 	if (filter === "Active") {
 		tasks = tasks.filter((t) => t.isDone === false)
@@ -58,12 +60,13 @@ export const TodolistWithredux = React.memo (({todolist}: TodolistPropsType) => 
 				{tasks.length === 0
 					? <p>Nothing hire</p>
 					: tasks.map((t) => {
+						
 						const changeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
 							dispatch(changeStatusAC(id, t.id, e.currentTarget.checked))
 						}
-						const calbackTaskHandler = (newTitle: string) => {
+						const calbackTaskHandler = useCallback((newTitle: string) => {
 							dispatch(changeTaskTitleAC(id, t.id, newTitle))
-						}
+						},[])
 
 						return (
 							<li className={`li-container ${t.isDone === true ? "opacity" : ""}`}
