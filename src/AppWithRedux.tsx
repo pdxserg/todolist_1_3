@@ -1,8 +1,7 @@
 import React, {useCallback} from 'react';
 import './App.css';
 import {AddItemForm} from "./AddItemForm";
-import {addTodolistAC, changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC} from "./model/todolist-reducer";
-import {addTaskAC, changeStatusAC, changeTaskTitleAC, removeTaskAC} from "./model/tasks-reducer";
+import {addTodolistAC} from "./model/todolist-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./store/store";
 import {TodolistWithredux} from "./TodolistWithRedux";
@@ -29,9 +28,9 @@ function AppWithRedux() {
 	const todolists = useSelector<AppRootStateType, TodolistType[]>(state => state.todolists)
 	const dispatch = useDispatch()
 
-	const addTodolist =useCallback ((title: string) => {
-		dispatch( addTodolistAC(title))
-	},[dispatch])
+	const addTodolist = useCallback((title: string) => {
+		dispatch(addTodolistAC(title))
+	}, [dispatch])
 
 	return (
 		<div className="App">

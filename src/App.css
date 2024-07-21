@@ -8,15 +8,30 @@
 .todolistcontayner {
     position: relative;
     min-width: 250px;
+    min-height: 250px;
     margin: 10px;
     padding: 10px;
     border: black solid;
     border-radius: 8px;
 }
 
+.tasks-container{
+}
+li-container{
+}
 
+
+.foter-buttons {
+    gap:5px;
+    position: absolute;
+    bottom: 10px;
+}
 .activeButton{
-    background: #64ff93;
+    background: #fffcb5;
+}
+.notActiveButton{
+    background: none;
+    border: none;
 }
 .opacity{
     opacity: 40%;
@@ -29,7 +44,6 @@
 }
 
 .error-message {
-
     color: red;
 }
 .remove-todolist{
@@ -40,9 +54,5 @@
 .editableSpan{
     background: #a64848;
 }
-.foter-buttons {
-    position: absolute;
-    bottom: 10px;
 
-}
 

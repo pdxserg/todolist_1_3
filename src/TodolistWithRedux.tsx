@@ -54,7 +54,7 @@ export const TodolistWithredux = React.memo (({todolist}: TodolistPropsType) => 
 			<div>
 				<AddItemForm addTitle={addTitle}/>
 			</div>
-			<ul>
+			<ul className="tasks-container">
 				{tasks.length === 0
 					? <p>Nothing hire</p>
 					: tasks.map((t) => {
@@ -66,7 +66,9 @@ export const TodolistWithredux = React.memo (({todolist}: TodolistPropsType) => 
 						}
 
 						return (
-							<li className={t.isDone === true ? "opacity" : ""} key={t.id}>
+							<li className={`li-container ${t.isDone === true ? "opacity" : ""}`}
+							 // className={t.isDone === true ? "opacity" : ""}
+							    key={t.id}>
 								<input type="checkbox"
 								       checked={t.isDone}
 								       onChange={changeStatusHandler}/>
