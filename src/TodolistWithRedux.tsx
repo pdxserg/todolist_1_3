@@ -7,6 +7,7 @@ import {AppRootStateType} from "./store/store";
 import {TaskType} from "./AppWithRedux";
 import {changeTodolistFilterAC, changeTodolistTitleAC, removeTodolistAC} from "./model/todolist-reducer";
 import {addTaskAC, changeStatusAC, changeTaskTitleAC, removeTaskAC} from "./model/tasks-reducer";
+import {FilterButtons} from "./components/FilterButtons";
 
 type TodolistPropsType = {
 	todolist: TodolistType
@@ -33,9 +34,15 @@ export const TodolistWithredux = React.memo (({todolist}: TodolistPropsType) => 
 		tasks = tasks.filter((t) => t.isDone === true)
 	}
 
-	const onClickAllHandler= useCallback (() => dispatch(changeTodolistFilterAC(id, "All")) ,[dispatch,id])
-	const onClickActiveHandler = useCallback(() => dispatch(changeTodolistFilterAC(id, "Active")) ,[dispatch,id])
-	const onClickCompletedHandler= useCallback(() => dispatch(changeTodolistFilterAC(id, "Completed")) ,[dispatch,id])
+	const onClickAllHandler= useCallback (() =>{
+		dispatch(changeTodolistFilterAC(id, "All"))
+	} ,[dispatch,id])
+	const onClickActiveHandler = useCallback(() => {
+		dispatch(changeTodolistFilterAC(id, "Active"))
+	} ,[dispatch,id])
+	const onClickCompletedHandler= useCallback(() => {
+		dispatch(changeTodolistFilterAC(id, "Completed"))
+	} ,[dispatch,id])
 
 	return (
 		<div className="todolistcontayner">
@@ -72,19 +79,10 @@ export const TodolistWithredux = React.memo (({todolist}: TodolistPropsType) => 
 
 
 			</ul>
-			<div className="foter-buttons">
-				<button className={filter === "All" ? "activeButton" : ""}
-				        onClick={onClickAllHandler}>All
-				</button>
-
-				<button className={filter === "Active" ? "activeButton" : ""}
-				        onClick={onClickActiveHandler}>Active
-				</button>
-
-				<button className={filter === "Completed" ? "activeButton" : ""}
-				        onClick={onClickCompletedHandler}>Completed
-				</button>
-			</div>
+			<FilterButtons filter={filter}
+			               onClickAllHandler={onClickAllHandler}
+			               onClickActiveHandler={onClickActiveHandler}
+			               onClickCompletedHandler={onClickCompletedHandler}  />
 		</div>
 
 	);
