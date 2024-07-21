@@ -32,6 +32,11 @@ export const TodolistWithredux = React.memo (({todolist}: TodolistPropsType) => 
 	if (filter === "Completed") {
 		tasks = tasks.filter((t) => t.isDone === true)
 	}
+
+	const onClickAllHandler= () => dispatch(changeTodolistFilterAC(id, "All"))
+	const onClickActiveHandler =() => dispatch(changeTodolistFilterAC(id, "Active"))
+	const onClickCompletedHandler=() => dispatch(changeTodolistFilterAC(id, "Completed"))
+
 	return (
 		<div className="todolistcontayner">
 			<button className="remove-todolist"
@@ -69,15 +74,15 @@ export const TodolistWithredux = React.memo (({todolist}: TodolistPropsType) => 
 			</ul>
 			<div className="foter-buttons">
 				<button className={filter === "All" ? "activeButton" : ""}
-				        onClick={() => dispatch(changeTodolistFilterAC(id, "All"))}>All
+				        onClick={onClickAllHandler}>All
 				</button>
 
 				<button className={filter === "Active" ? "activeButton" : ""}
-				        onClick={() => dispatch(changeTodolistFilterAC(id, "Active"))}>Active
+				        onClick={onClickActiveHandler}>Active
 				</button>
 
 				<button className={filter === "Completed" ? "activeButton" : ""}
-				        onClick={() => dispatch(changeTodolistFilterAC(id, "Completed"))}>Completed
+				        onClick={onClickCompletedHandler}>Completed
 				</button>
 			</div>
 		</div>
