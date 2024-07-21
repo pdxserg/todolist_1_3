@@ -57,20 +57,20 @@ export const TodolistWithredux = React.memo(({todolist}: TodolistPropsType) => {
 			<div>
 				<AddItemForm addTitle={addTitle}/>
 			</div>
-			<ul className="tasks-container">
+			<div className="tasks-container">
 				{tasks.length === 0
 					? <p>Nothing hire</p>
 					: tasks.map((task) => {
 						return <Task
-							id={id}
-							t={task}
-							dispatch={dispatch}
+							todoId={id}
+							task={task}
+
 						/>
 					})
 				}
 
 
-			</ul>
+			</div>
 			<FilterButtons filter={filter}
 			               onClickAllHandler={onClickAllHandler}
 			               onClickActiveHandler={onClickActiveHandler}

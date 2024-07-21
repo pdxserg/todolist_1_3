@@ -2,31 +2,32 @@ import React, {ChangeEvent, useCallback} from 'react';
 import {changeStatusAC, changeTaskTitleAC, removeTaskAC} from "../model/tasks-reducer";
 import {EditableSpan} from "../EditableSpan";
 import {TaskType} from "../AppWithRedux";
+import {useDispatch} from "react-redux";
 
 
 type TaskPropsType = {
-	id: string
-	t: TaskType
-	dispatch: any
-}
-export const Task = React.memo(({id, t, dispatch}: TaskPropsType) => {
+	todoId: string
+	task: TaskType
 
+}
+export const Task = React.memo(({todoId, task, }: TaskPropsType) => {
+ const dispatch =useDispatch()
 
 	const changeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		dispatch(changeStatusAC(id, t.id, e.currentTarget.checked))
+		dispatch(changeStatusAC(todoId, task.id, e.currentTarget.checked))
 	}
 	const calbackTaskHandler = useCallback((newTitle: string) => {
-		dispatch(changeTaskTitleAC(id, t.id, newTitle))
-	}, [dispatch, id, t.id])
+		dispatch(changeTaskTitleAC(todoId, task.id, newTitle))
+	}, [dispatch, todoId, task.id])
 
 
 	return (
-		<div className={`li-container ${t.isDone === true ? "opacity" : ""}`}>
+		<div className={`li-container ${task.isDone === true ? "opacity" : ""}`}>
 			<input type="checkbox"
-			       checked={t.isDone}
+			       checked={task.isDone}
 			       onChange={changeStatusHandler}/>
-			<EditableSpan title={t.title} callback={calbackTaskHandler}/>
-			<button onClick={() => dispatch(removeTaskAC(id, t.id))}>X</button>
+			<EditableSpan title={task.title} callback={calbackTaskHandler}/>
+			<button onClick={() => dispatch(removeTaskAC(todoId, task.id))}>X</button>
 
 		</div>
 	)
