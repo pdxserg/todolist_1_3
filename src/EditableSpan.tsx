@@ -5,6 +5,7 @@ type EditableSpanTypeProps = {
 	callback: (newTitle: string) => void
 }
 export const EditableSpan = React.memo (({title, callback}: EditableSpanTypeProps) => {
+	console.log("editSpan")
 	const [isEditing, setIsEditing] = useState(false)
 	const [newTitle, setNewTitle] = useState(title)
 	const [error, setError] = useState<string|null >(null)
@@ -13,7 +14,10 @@ export const EditableSpan = React.memo (({title, callback}: EditableSpanTypeProp
 		setNewTitle(newTitle)
 	}
 	const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-		 setError(null)
+		if(error !== null){
+			setError(null)
+		}
+
 		if (e.key === "Enter") {
 			onBlureHandle()
 		}

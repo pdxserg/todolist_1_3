@@ -10,7 +10,7 @@ type TaskPropsType = {
 	dispatch: any
 }
 export const Task = React.memo(({id, t, dispatch}: TaskPropsType) => {
-
+	console.log("task")
 
 	const changeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		dispatch(changeStatusAC(id, t.id, e.currentTarget.checked))
