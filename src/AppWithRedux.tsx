@@ -28,30 +28,11 @@ function AppWithRedux() {
 
 	const todolists = useSelector<AppRootStateType, TodolistType[]>(state => state.todolists)
 	const dispatch = useDispatch()
-	const removeTask = (todolistID: string, id: string) => {
-		dispatch(removeTaskAC(todolistID, id))
-	}
-	const addTask = (todolistID: string, title: string) => {
-		dispatch(addTaskAC(todolistID, title))
-	}
-	const filtered = (todolistId: string, filter: FilterType) => {
-		dispatch(changeTodolistFilterAC(todolistId, filter))
-	}
-	const changeStatus = (todolistID: string, taskId: string, isDone: boolean) => {
-		dispatch(changeStatusAC(todolistID, taskId, isDone))
-	}
-	const removeTodolist = (todolistId: string) => {
-		dispatch(removeTodolistAC(todolistId))
-	}
+
 	const addTodolist =useCallback ((title: string) => {
 		dispatch( addTodolistAC(title))
-	},[])
-	const changeTodolistTitle = (todolistID: string, newTitle: string) => {
-		dispatch(changeTodolistTitleAC(todolistID, newTitle))
-	}
-	const changeTaskTitle = (todolistId: string, taskId: string, newTitle: string) => {
-		dispatch(changeTaskTitleAC(todolistId, taskId, newTitle))
-	}
+	},[dispatch])
+
 	return (
 		<div className="App">
 			<AddItemForm addTitle={addTodolist}/>

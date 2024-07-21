@@ -12,7 +12,8 @@ type TodolistPropsType = {
 	todolist: TodolistType
 }
 
-export const TodolistWithredux = ({todolist}: TodolistPropsType) => {
+export const TodolistWithredux = React.memo (({todolist}: TodolistPropsType) => {
+	console.log("todolist")
 
 	const {id, title, filter} = todolist
 
@@ -20,7 +21,7 @@ export const TodolistWithredux = ({todolist}: TodolistPropsType) => {
 	const dispatch = useDispatch()
 	const addTitle =useCallback( (title: string) => {
 		dispatch(addTaskAC(todolist.id, title))
-	},[])
+	},[dispatch,todolist.id])
 	const calbackTodoHandler = (newTitle: string) => {
 		dispatch(changeTodolistTitleAC(id, newTitle))
 	}
@@ -82,5 +83,5 @@ export const TodolistWithredux = ({todolist}: TodolistPropsType) => {
 		</div>
 
 	);
-};
+})
 
