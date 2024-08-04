@@ -5,7 +5,7 @@ import {TaskType} from "../AppWithRedux";
 import {useDispatch} from "react-redux";
 
 
-type TaskPropsType = {
+ export type TaskPropsType = {
 	todoId: string
 	task: TaskType
 
