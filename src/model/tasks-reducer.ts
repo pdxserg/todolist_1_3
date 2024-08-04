@@ -17,6 +17,7 @@ let todolistID2 = v1()
 let initialState: TasksStateType = {}
 
 export const tasksReducer = (state = initialState, action: ActionsType): TasksStateType => {
+	// debugger
 	switch (action.type) {
 		case 'REMOVE-TASK': {
 			return {...state, [action.todolistID]: state[action.todolistID].filter(el => el.id !== action.id)}
@@ -29,6 +30,7 @@ export const tasksReducer = (state = initialState, action: ActionsType): TasksSt
 			return {...state, [action.newId]: []}
 		}
 		case "CHANGE-STATUS": {
+			// debugger
 			return {...state,
 				[action.todolistID]: state[action.todolistID].map(el => el.id === action.id
 					? {...el, isDone: action.isDone} : el)
@@ -84,6 +86,7 @@ type ChangeStatusACType = {
 	isDone: boolean
 }
 export const changeStatusAC = (todolistID: string, id: string, isDone: boolean): ChangeStatusACType => {
+	// debugger
 	return {
 		type: 'CHANGE-STATUS',
 		todolistID,

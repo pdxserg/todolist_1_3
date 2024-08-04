@@ -33,7 +33,7 @@ export const EditableSpan = React.memo (({title, callback}: EditableSpanTypeProp
 	}
 
 	return (
-		<div>
+		<div className={"editable-span-container"}>
 			{isEditing ?
 				(
 					<input className={error ? 'error' : ''}

@@ -20,6 +20,7 @@ export const TodolistWithredux = React.memo(({todolist}: TodolistPropsType) => {
 	const {id, title, filter} = todolist
 
 	let tasks = useSelector<AppRootStateType, TaskType[]>(state => state.tasks[id])
+	// debugger
 	const dispatch = useDispatch()
 
 	const addTitle = useCallback((title: string) => {
@@ -62,6 +63,7 @@ export const TodolistWithredux = React.memo(({todolist}: TodolistPropsType) => {
 					? <p>Nothing hire</p>
 					: tasks.map((task) => {
 						return <Task
+							key={task.id}
 							todoId={id}
 							task={task}
 

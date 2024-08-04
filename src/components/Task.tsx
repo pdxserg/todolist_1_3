@@ -10,10 +10,11 @@ type TaskPropsType = {
 	task: TaskType
 
 }
-export const Task = React.memo(({todoId, task, }: TaskPropsType) => {
- const dispatch =useDispatch()
+export const Task = React.memo(({todoId, task,}: TaskPropsType) => {
+	const dispatch = useDispatch()
 
 	const changeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
+		// debugger
 		dispatch(changeStatusAC(todoId, task.id, e.currentTarget.checked))
 	}
 	const calbackTaskHandler = useCallback((newTitle: string) => {
@@ -23,10 +24,13 @@ export const Task = React.memo(({todoId, task, }: TaskPropsType) => {
 
 	return (
 		<div className={`li-container ${task.isDone === true ? "opacity" : ""}`}>
-			<input type="checkbox"
-			       checked={task.isDone}
-			       onChange={changeStatusHandler}/>
+			<input
+
+				type="checkbox"
+				checked={task.isDone}
+				onChange={changeStatusHandler}/>
 			<EditableSpan title={task.title} callback={calbackTaskHandler}/>
+			{/* {task.title}  */}
 			<button onClick={() => dispatch(removeTaskAC(todoId, task.id))}>X</button>
 
 		</div>
