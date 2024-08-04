@@ -1,5 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-type AddItemFormTypeProps={
+export type AddItemFormTypeProps={
 	addTitle:(title: string)=>void
 }
 export const AddItemForm =React.memo (({ addTitle}:AddItemFormTypeProps) => {
